@@ -15,19 +15,26 @@ train_data['label']=type_star.transform(train_data.type)
 
 class_num=len(type_star.classes_)
 
-dMtrain=xgb.DMatrix(train_matrix,label=train_data.label)
-params={'booster':'gbtree',
-    	'objective': 'multi:softprob',
-        'num_class':class_num,
-        #'eta': 0.1,
-        # 'max_depth': 9,
-        'subsample':0.8,
-        'colsample_bytree':0.8,
-        'colsample_bylevel':0.8,
-    	'nthread':12,
-        'silent':1
-    	}
-watchlist = [(dMtrain,'train')]
-model = xgb.train(params,dMtrain,num_boost_round=65,evals=watchlist)
+# dMtrain=xgb.DMatrix(train_matrix,label=train_data.label)
+# params={'booster':'gbtree',
+#     	'objective': 'multi:softprob',
+#         'num_class':class_num,
+#         #'eta': 0.1,
+#         # 'max_depth': 9,
+#         'subsample':0.8,
+#         'colsample_bytree':0.8,
+#         'colsample_bylevel':0.8,
+#     	'nthread':12,
+#         'silent':1
+#     	}
+# watchlist = [(dMtrain,'train')]
+# model = xgb.train(params,dMtrain,num_boost_round=65,evals=watchlist)
 
+
+# test_data=pd.read_csv("../first_test_index.csv")
+# test_matrix=np.zeros((len(test_data),2600))
+# for i in test_data.index:
+#     temp=open('../test_data/'+str(test_data.loc[i,'id'])+'.txt').read()
+#     test_matrix[i]=np.array(eval(temp))
+# dMtest=xgb.DMatrix(test_matrix)
 
