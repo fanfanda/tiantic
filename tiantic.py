@@ -6,10 +6,12 @@ from sklearn import metrics
 from sklearn.cross_validation import train_test_split
 
 train_data=pd.read_csv("../first_train_index.csv")
-train_matrix=np.zeros((len(train_data),2600))
+train_data['data']=''
+# train_matrix=np.zeros((len(train_data),2600))
 for i in train_data.index:
     temp=open('../train_data/'+str(train_data.loc[i,'id'])+'.txt').read()
-    train_matrix[i]=np.array(eval(temp))
+    train_data.ix[i,'data']=np.array(eval(temp))
+    # train_matrix[i]=np.array(eval(temp))
 
 type_star=preprocessing.LabelEncoder()
 type_star.fit(train_data.type)
@@ -17,7 +19,7 @@ train_data['label']=type_star.transform(train_data.type)
 
 class_num=len(type_star.classes_)
 
-x_train, x_test, y_train, y_test = train_test_split(train_matrix, train_data.label, test_size = 0.2)
+# x_train, x_test, y_train, y_test = train_test_split(train_matrix, train_data.label, test_size = 0.2)
 
 # test_data=pd.read_csv("../first_test_index.csv")
 # test_matrix=np.zeros((len(test_data),2600))
