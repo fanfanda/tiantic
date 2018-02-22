@@ -7,7 +7,7 @@ from sklearn.cross_validation import train_test_split
 
 train_data=pd.read_csv("../first_train_index.csv")
 train_data['data']=''
-# train_matrix=np.zeros((len(train_data),2600))
+train_matrix=np.zeros((len(train_data),2600))
 for i in train_data.index:
     temp=open('../train_data/'+str(train_data.loc[i,'id'])+'.txt').read()
     train_data.loc[i,'data']=temp
